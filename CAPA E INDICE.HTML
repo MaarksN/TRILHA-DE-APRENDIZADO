@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Auto Arremate® / Arremaq 3.0 - Capa e Índices</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tone.js for sound effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <style>
+        /* * =============================================
+         * Variáveis CSS (Paleta de Cores & Fontes)
+         * =============================================
+         */
+        :root {
+            /* Cores Principais */
+            --aa-green: #16B097;
+            --aa-dark-blue: #1C2E42;
+            --aa-light-gray: #AEB0B2; 
+            --aa-medium-gray: #6c7a89; 
+            --aa-white: #FFFFFF;
+            --aa-black: #000000;
+            --aa-green-darker: #0F8A7E; 
+            --aa-green-text-dark-theme: #2DD4BF; 
+            --aa-green-lighter: #D2F3EC;
+            --aa-green-pastel: #f0fdfa; 
+            --aa-dark-blue-lighter: #2C4A6B;
+            --aa-green-darkest: #17575c; 
+            --aa-shiny-gray-light: #E5E7EB; 
+            --aa-shiny-gray-dark: #374151; 
+
+            --arremaq-orange: #FF8C00;
+            --arremaq-orange-darker: #D97706; 
+            --arremaq-orange-text-dark-theme: #FDBA74; 
+            --arremaq-orange-lighter: #FFD073;
+            --arremaq-orange-pastel: #fffbeb;
+            --arremaq-orange-darkest: #6b3e00; 
+            
+            /* Fontes */
+            --font-headings-cover: 'Manrope', sans-serif; 
+            --font-body-cover: 'Manrope', sans-serif;   
+            --font-primary-portal: 'Manrope', sans-serif;
+            --font-headings-portal: 'Sora', sans-serif;
+
+            /* Fundos */
+            --bg-main-light: var(--aa-green-pastel); 
+            --bg-main-dark: #0a121c; 
+            --bg-content-light-portal: var(--aa-white);
+            --bg-content-dark-portal: #1e293b; 
+            --bg-cards-section-light: #f0f4f8; 
+            --bg-cards-section-dark: #111827; 
+
+            /* Texto */
+            --text-headings-light-portal: var(--aa-dark-blue);
+            --text-headings-dark-portal: var(--aa-green-lighter);
+            --text-body-light-portal: #334155; 
+            --text-body-dark-portal: #cbd5e1; 
+            --text-muted-light-portal: #616161; 
+            --text-muted-dark-portal: #94a3b8; 
+            
+            /* Bordas */
+            --border-color-light-portal: #e2e8f0; 
+            --border-color-dark-portal: #334155; 
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            
+            /* Raio da Borda */
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            --radius-card-portal: 1.25rem;
+            --radius-button-portal: 0.75rem;
+            
+            /* Transições */
+            --transition-main: .3s cubic-bezier(.4,0,.2,1); /* Transição mais suave */
+        }
+
+        /* * =============================================
+         * Estilos Globais e Tema Escuro
+         * =============================================
+         */
+        html { 
+            scroll-behavior: smooth; 
+            font-family: var(--font-body-cover); 
+            font-size: 91%;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body-cover); 
+            background-color: var(--bg-main-light);
+            color: var(--text-body-light-portal);
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.7;
+            transition: background-color var(--transition-main), color var(--transition-main); /* Transição de tema */
+        }
+        html[data-theme='dark'] body {
+            background-color: var(--bg-main-dark);
+            color: var(--text-body-dark-portal);
+        }
+        .hidden { display: none !important; }
+
+        /* Estilo de foco para acessibilidade */
+        *:focus-visible {
+            outline: 3px solid var(--arremaq-orange-lighter); /* Foco vibrante */
+            outline-offset: 2px;
+            border-radius: var(--radius-md);
+        }
+
+        /* Estilo para elementos desabilitados */
+        .disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            cursor: not-allowed;
+            filter: grayscale(80%); /* Efeito de desbotamento */
+        }
+
+        /* * =============================================
+         * Estilos da Seção de Capa
+         * =============================================
+         */
+        .capa-section { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: clamp(1.2rem, 4.8vw, 2.4rem) clamp(0.8rem, 4vw, 1.6rem); text-align: center; position: relative; background: linear-gradient(60deg, var(--arremaq-orange-pastel) 0%, var(--arremaq-orange-lighter) 15%, var(--aa-shiny-gray-light) 35%, var(--aa-green-lighter) 55%, var(--aa-shiny-gray-light) 75%, var(--aa-green-pastel) 90%, var(--arremaq-orange-pastel) 100%); background-size: 300% 300%; animation: backgroundGradientAnimation 25s ease infinite alternate; overflow: hidden; } /* Animação mais lenta e alternada */
+        html[data-theme='dark'] .capa-section { background: linear-gradient(60deg, var(--arremaq-orange-darkest) 0%, var(--arremaq-orange-darker) 15%, var(--aa-shiny-gray-dark) 35%, var(--aa-dark-blue) 55%, var(--aa-shiny-gray-dark) 75%, var(--aa-green-darkest) 90%, var(--arremaq-orange-darkest) 100%); background-size: 300% 300%; animation: backgroundGradientAnimation 25s ease infinite alternate; }
+        @keyframes backgroundGradientAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .logos-container { display: flex; justify-content: center; align-items: center; gap: 1.6rem; margin-bottom: 1.8rem; } /* Espaçamento maior */
+        .playbook-logo { width: 200px; max-width: 48%; height: auto; display: block; filter: drop-shadow(0 0.6rem 1.2rem rgba(0,0,0,0.15)); animation: logo-float 3.5s ease-in-out infinite alternate, logo-pulse 2s linear infinite; } /* Sombra mais intensa, animação ajustada */
+        html[data-theme='dark'] .playbook-logo { filter: drop-shadow(0 0.6rem 1.2rem rgba(0,0,0,0.4)); }
+        @keyframes logo-float { 0% { transform: translateY(0px); } 100% { transform: translateY(-8px); } } /* Flutuação mais pronunciada */
+        @keyframes logo-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.02); } } /* Novo efeito de pulso */
+        
+        .capa-title { font-family: var(--font-headings-cover); font-weight: 800; text-align: center; margin-top: 0.6em; margin-bottom: 1em; font-size: clamp(1.2rem, 2.8vw, 1.6rem); line-height: 1.4; text-transform: uppercase; letter-spacing: 0.08em; color: var(--aa-dark-blue); text-shadow: 1px 1px 2px rgba(0,0,0,0.1); } /* Tamanho e espaçamento ajustados, sombra de texto */
+        html[data-theme='dark'] .capa-title { color: var(--aa-green-lighter); text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .capa-title .capa-title-line { display: block; margin-bottom: 0.2em; }
+        .capa-title .capa-title-line:last-child { margin-bottom: 0; }
+        .capa-title.fun-title-effect { animation: fun-title-glow-animation 5s ease-in-out infinite alternate; position: relative; } /* Animação mais lenta */
+        @keyframes fun-title-glow-animation {
+            0%, 100% { text-shadow: 0 0 8px var(--aa-green), 0 0 12px var(--arremaq-orange); }
+            50% { text-shadow: 0 0 15px var(--aa-green-lighter), 0 0 20px var(--arremaq-orange-lighter); }
+        }
+        
+        .emoji-original-color { -webkit-text-fill-color: initial; text-fill-color: initial; background: none; display: inline-block; text-shadow: none; }
+        
+        .text-aa-green-darker { color: var(--aa-green-darker) !important; }
+        html[data-theme='dark'] .text-aa-green-darker { color: var(--aa-green-text-dark-theme) !important; }
+        .text-arremaq-orange-darker { color: var(--arremaq-orange-darker) !important; }
+        html[data-theme='dark'] .text-arremaq-orange-darker { color: var(--arremaq-orange-text-dark-theme) !important; }
+        
+        .frase-destaque { font-family: var(--font-headings-cover); font-size: clamp(0.9rem, 1.8vw, 1.25rem); font-weight: 700; background: rgba(255,255,255,0.2); border-radius: var(--radius-lg); padding: 0.5em 1em; margin-bottom: 1rem; margin-top: 0.8em; display: block; max-width: 90%; margin-left: auto; margin-right: auto; text-shadow: 0 1px 4px rgba(0,0,0,0.2); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); transition: all var(--transition-main); border: 1px solid rgba(255,255,255,0.3); } /* Estilo de frase mais destacado com fundo semitransparente e blur */
+        html[data-theme='dark'] .frase-destaque { background: rgba(0,0,0,0.3); text-shadow: 0 1px 4px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); }
+        .frase-destaque-verde { color: var(--aa-green-darker); }
+        html[data-theme='dark'] .frase-destaque-verde { color: var(--aa-green-text-dark-theme); }
+        .frase-destaque-laranja { color: var(--arremaq-orange-darker); }
+        html[data-theme='dark'] .frase-destaque-laranja { color: var(--arremaq-orange-text-dark-theme); }
+        .frase-destaque .emoji { margin: 0 0.3em; font-size: 1.1em; vertical-align: middle; -webkit-text-fill-color: initial; text-fill-color: initial; background: none; text-shadow: none; }
+        .frase-destaque.fun-frase-effect { animation: fun-frase-pulse 3.5s ease-in-out infinite; } /* Animação mais lenta */
+        @keyframes fun-frase-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.015); opacity: 0.95; } }
+        
+        .capa-criado { font-family: var(--font-body-cover); font-size: 0.85rem; color: var(--aa-dark-blue); opacity: 0.95; margin-top: 1.5rem; margin-bottom: 1.5rem; font-weight: 500; animation: created-by-pulse 6s infinite alternate; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,0.1); } /* Tamanho e espaçamento ajustados */
+        html[data-theme='dark'] .capa-criado { color: #E2E8F0; opacity: 0.9; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        @keyframes created-by-pulse { 0% { text-shadow: 0 0 5px rgba(22, 176, 151, 0.3), 0 0 2px rgba(255, 140, 0, 0.2); transform: scale(1); } 50% { text-shadow: 0 0 10px rgba(22, 176, 151, 0.5), 0 0 6px rgba(255, 140, 0, 0.4); transform: scale(1.02); } 100% { text-shadow: 0 0 5px rgba(22, 176, 151, 0.3), 0 0 2px rgba(255, 140, 0, 0.2); transform: scale(1); } }
+        .capa-criado .emoji { font-size: 1.1em; vertical-align: baseline; margin: 0 0.2em; }
+        .capa-criado .creator-name { font-weight: 700; background: linear-gradient(45deg, var(--aa-green-darker) 20%, var(--aa-green) 50%, var(--arremaq-orange) 80%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent; padding: 0 0.2em; display: inline-block; }
+        html[data-theme='dark'] .capa-criado .creator-name { background: linear-gradient(45deg, var(--aa-green-lighter) 20%, var(--aa-green) 50%, var(--arremaq-orange-lighter) 80%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent; }
+        
+        .btn-iniciar { display: inline-flex; align-items: center; gap: 0.8em; font-family: var(--font-headings-cover); font-size: 1rem; font-weight: bold; padding: 0.8em 2em; background-image: linear-gradient(45deg, var(--aa-green-darker) 0%, var(--aa-green) 50%, var(--aa-green-darker) 100%); background-size: 250% auto; color: var(--aa-white); border: none; border-radius: 9999px; cursor: pointer; box-shadow: 0 6px 18px rgba(22, 176, 151, 0.4), 0 2px 4px -2px var(--aa-green-darker) inset; transition: all 0.5s ease-out, background-position 0.6s ease-out; outline: none; margin-top: 1.5em; margin-bottom: 1.5em; text-transform: uppercase; letter-spacing: 0.1em; position: relative; overflow: hidden; will-change: transform, box-shadow, background-position; } /* Botão maior e com mais animação */
+        .btn-iniciar:hover { background-position: right center; transform: scale(1.1) translateY(-5px); box-shadow: 0 8px 22px rgba(22, 176, 151, 0.5), 0 2px 4px -2px var(--aa-green) inset, 0 0 18px var(--aa-green-lighter); }
+        html[data-theme='dark'] .btn-iniciar { background-image: linear-gradient(45deg, var(--aa-green) 0%, var(--aa-green-lighter) 50%, var(--aa-green) 100%); color: var(--aa-dark-blue); box-shadow: 0 6px 18px rgba(22, 176, 151, 0.5), 0 2px 4px -2px var(--aa-green) inset; }
+        html[data-theme='dark'] .btn-iniciar:hover { color: var(--aa-dark-blue); box-shadow: 0 8px 22px rgba(22, 176, 151, 0.6), 0 2px 4px -2px var(--aa-green-darker) inset, 0 0 20px var(--aa-green); }
+        .btn-iniciar svg { width: 1.4em; height: 1.4em; transition: transform 0.5s ease; }
+        .btn-iniciar:hover svg { transform: rotate(20deg) scale(1.2) translateX(4px); } 
+        
+        .capa-social-links { margin-top: 1.5rem; display: flex; gap: 1.2rem; justify-content: center; align-items: center; } /* Espaçamento ajustado */
+        .capa-social-links a { 
+            color: var(--aa-white); 
+            font-size: 1.25rem; /* Ícones maiores */
+            transition: all var(--transition-main);
+            width: 50px; /* Botões maiores */
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(45deg, var(--aa-green), var(--aa-green-darker));
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra mais suave */
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .capa-social-links a::before { /* Efeito de brilho ao passar o mouse */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%) rotate(45deg);
+            transition: all 0.3s ease-out;
+            opacity: 0;
+        }
+        .capa-social-links a:hover::before {
+            opacity: 1;
+            width: 0;
+            height: 0;
+        }
+        .capa-social-links a:hover { 
+            background-image: linear-gradient(45deg, var(--arremaq-orange), var(--arremaq-orange-darker));
+            transform: scale(1.2) rotate(-15deg); /* Animação mais intensa */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        html[data-theme='dark'] .capa-social-links a { 
+             background-image: linear-gradient(45deg, var(--aa-green-text-dark-theme), var(--aa-green));
+             color: var(--aa-dark-blue);
+        }
+        html[data-theme='dark'] .capa-social-links a:hover {
+            background-image: linear-gradient(45deg, var(--arremaq-orange-text-dark-theme), var(--arremaq-orange-darker));
+            color: var(--aa-white);
+        }
+
+        /* * =============================================
+         * Estilos da Seção de Menu Principal
+         * =============================================
+         */
+        .menu-principal-section { min-height: 100vh; padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); text-align: center; background-color: var(--bg-cards-section-light); transition: background-color var(--transition-main), color var(--transition-main); }
+        html[data-theme='dark'] .menu-principal-section { background-color: var(--bg-cards-section-dark); }
+        .menu-principal-title { font-family: var(--font-headings-cover); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-headings-light-portal); margin-bottom: 3rem; line-height: 1.2; text-transform: uppercase; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); } /* Tamanho e espaçamento ajustados */
+        html[data-theme='dark'] .menu-principal-title { color: var(--text-headings-dark-portal); text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+        
+        .menu-card { background-color: var(--bg-content-light-portal); border-radius: var(--radius-xl); padding: 2.2rem 1.8rem; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.4s cubic-bezier(.2,0,.2,1); border: 1px solid var(--border-color-light-portal); display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; height: 100%; min-height: 300px; justify-content: center; position: relative; overflow: hidden; will-change: transform, box-shadow; } /* Estilo de card mais elevado e com transições mais suaves */
+        .menu-card::before { /* Efeito de gradiente ao passar o mouse */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(22,176,151,0.1) 0%, rgba(255,140,0,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+        .menu-card:hover { transform: translateY(-12px) scale(1.05); box-shadow: 0 15px 40px rgba(0,0,0,0.25); border-color: var(--aa-green); }
+        html[data-theme='dark'] .menu-card { background-color: var(--bg-content-dark-portal); border-color: var(--border-color-dark-portal); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        html[data-theme='dark'] .menu-card:hover { border-color: var(--aa-green-lighter); }
+        
+        .menu-card-icon { font-size: 3rem; margin-bottom: 1.2rem; line-height: 1; transition: transform 0.3s ease-out; } /* Ícone maior e com transição */
+        .menu-card:hover .menu-card-icon { transform: scale(1.1) rotate(5deg); }
+        .menu-card-title { font-family: var(--font-headings-cover); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-headings-light-portal); line-height: 1.4; text-transform: uppercase; } /* Título maior */
+        html[data-theme='dark'] .menu-card-title { color: var(--text-headings-dark-portal); }
+        
+        /* * =============================================
+         * Estilos da Seção de Índice da Trilha
+         * =============================================
+         */
+        .manual-pitstop-detalhes-section { background-color: var(--bg-main-light); color: var(--text-body-light-portal); padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); min-height: 100vh; transition: background-color var(--transition-main), color var(--transition-main); }
+        html[data-theme='dark'] .manual-pitstop-detalhes-section { background-color: var(--bg-main-dark); color: var(--text-body-dark-portal); }
+        .manual-pitstop-main-title { font-family: var(--font-headings-portal); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; color: var(--text-headings-light-portal); text-align: center; margin-bottom: 2.5rem; text-transform: uppercase; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); } /* Título maior e com sombra */
+        html[data-theme='dark'] .manual-pitstop-main-title { color: var(--text-headings-dark-portal); text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+        
+        #playbookIndexContainer .index-item-card { background-color: var(--bg-content-light-portal); border: 2px solid var(--border-color-light-portal); border-left: 6px solid var(--aa-green); border-radius: var(--radius-lg); padding: 1.8rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.35s cubic-bezier(.2,0,.2,1); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 240px; justify-content: flex-start; position: relative; overflow: hidden; will-change: transform, box-shadow, border-color; } /* Bordas mais grossas e sombras mais suaves */
+        #playbookIndexContainer .index-item-card:hover { transform: translateY(-7px) scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.2); border-left-color: var(--arremaq-orange); border-color: var(--arremaq-orange); }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-card { background-color: var(--bg-content-dark-portal); border-color: var(--border-color-dark-portal); border-left-color: var(--aa-green-lighter); }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-card:hover { border-left-color: var(--arremaq-orange-lighter); border-color: var(--arremaq-orange-lighter); }
+        
+        #playbookIndexContainer .index-item-emoji { font-size: 2.8rem; margin-bottom: 1.2rem; line-height: 1; transition: transform 0.3s ease-out; } /* Emoji maior e com transição */
+        #playbookIndexContainer .index-item-card:hover .index-item-emoji { transform: rotate(10deg) scale(1.1); }
+        .emoji-autoarremate-color { color: var(--aa-green-darker) !important; } 
+        html[data-theme='dark'] .emoji-autoarremate-color { color: var(--aa-green-text-dark-theme) !important; }
+        .emoji-arremaq-color { color: var(--arremaq-orange-darker) !important; } 
+        html[data-theme='dark'] .emoji-arremaq-color { color: var(--arremaq-orange-text-dark-theme) !important; }
+        
+        #playbookIndexContainer .index-item-title { font-family: var(--font-headings-portal); font-weight: 700; font-size: 1rem; margin-bottom: 0.8rem; color: var(--text-headings-light-portal); line-height: 1.4; } /* Título do módulo ajustado */
+        #playbookIndexContainer .index-item-title strong { text-transform: uppercase; font-weight: 800; display: block; }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-title { color: var(--text-headings-dark-portal); }
+        
+        #playbookIndexContainer .index-item-sub { font-family: var(--font-primary-portal); font-size: 0.75rem; color: var(--text-muted-light-portal); line-height: 1.6; margin-top: auto; padding-top: 0.6rem; } /* Subtítulo ajustado */
+        html[data-theme='dark'] #playbookIndexContainer .index-item-sub { color: var(--text-muted-dark-portal); }
+        #playbookIndexContainer .index-item-sub .sentence-emoji { margin-right: 0.4em; color: var(--aa-green); }
+        html[data-theme='dark'] #playbookIndexContainer .index-item-sub .sentence-emoji { color: var(--aa-green-lighter); }
+
+        /* Estilos de Seção de Conteúdo Geral */
+        .playbook-sub-section { padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 5vw, 2rem); background-color: var(--bg-main-light); min-height: 100vh; transition: background-color var(--transition-main), color var(--transition-main); }
+        html[data-theme='dark'] .playbook-sub-section { background-color: var(--bg-main-dark); }
+        
+        /* Botões de Utilidade */
+        .btn-voltar-secao { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-headings-cover); font-weight: 600; padding: 0.7rem 1.4rem; border-radius: var(--radius-button-portal); text-decoration: none; transition: all 0.3s cubic-bezier(.2,0,.2,1); border: 2px solid var(--aa-green); background-color: transparent; color: var(--aa-green-darker); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2.5rem; } /* Botão de voltar ajustado */
+        .btn-voltar-secao:hover { background-color: var(--aa-green-lighter); border-color: var(--aa-green-darker); transform: translateY(-3px) scale(1.02); color: var(--aa-green-darker); box-shadow: 0 4px 10px rgba(22,176,151,0.2); }
+        html[data-theme='dark'] .btn-voltar-secao { border-color: var(--aa-green-lighter); color: var(--aa-green-lighter); }
+        html[data-theme='dark'] .btn-voltar-secao:hover { background-color: var(--aa-green-darker); border-color: var(--aa-green-lighter); color: var(--aa-white); box-shadow: 0 4px 10px rgba(45,212,191,0.3); }
+        .btn-voltar-secao i { margin-right: 0.4rem; }
+
+        /* * =============================================
+         * Acessibilidade & Estilos do Toggle de Tema
+         * =============================================
+         */
+        .theme-toggle-button { position: fixed; bottom: 25px; right: 25px; background-image: linear-gradient(45deg, var(--aa-dark-blue), #2c3e50); color: var(--aa-white); border: 1px solid var(--border-color-dark-portal); border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; cursor: pointer; box-shadow: 0 6px 15px rgba(0,0,0,0.2); z-index: 1000; transition: all 0.3s cubic-bezier(.4,0,.2,1); } /* Botão maior e com melhor sombra */
+        .theme-toggle-button:hover { transform: scale(1.15); color: var(--aa-green-lighter); box-shadow: 0 0 20px var(--aa-green-lighter); }
+        html[data-theme='dark'] .theme-toggle-button { background-image: linear-gradient(45deg, var(--aa-green-lighter), var(--aa-green)); color: var(--aa-dark-blue); }
+        
+        .accessibility-controls { position: fixed; top: 25px; right: 25px; display: flex; flex-direction: column; gap: 12px; z-index: 1001; } /* Espaçamento ajustado */
+        .accessibility-btn { background-color: var(--bg-content-light-portal); color: var(--text-headings-light-portal); border: 1px solid var(--border-color-light-portal); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s cubic-bezier(.4,0,.2,1); background-image: linear-gradient(45deg, white, #f3f4f6); } /* Botões maiores e com melhor sombra */
+        .accessibility-btn:hover { transform: scale(1.15); color: var(--aa-green); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+        html[data-theme='dark'] .accessibility-btn { background-image: linear-gradient(45deg, #4b5563, #3f4a5a); color: var(--text-headings-dark-portal); border-color: var(--border-color-dark-portal); }
+        html[data-theme='dark'] .accessibility-btn:hover { color: var(--aa-green-lighter); }
+
+        /* Estilos do Modal */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8); /* Fundo mais escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px); /* Desfoque mais intenso */
+            -webkit-backdrop-filter: blur(8px);
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out; /* Transição mais suave */
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-content-light-portal);
+            margin: auto;
+            padding: 3rem; /* Padding aumentado */
+            border-radius: var(--radius-xl);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6); /* Sombra mais forte */
+            width: 95%;
+            max-width: 550px; /* Largura máxima ligeiramente maior */
+            position: relative;
+            transform: translateY(30px) scale(0.95); /* Animação inicial */
+            transition: transform 0.4s cubic-bezier(.2,0,.2,1); /* Transição suave */
+            border: 1px solid var(--border-color-light-portal); /* Borda sutil */
+        }
+        html[data-theme='dark'] .modal-content {
+            background-color: var(--bg-content-dark-portal);
+            border-color: var(--border-color-dark-portal);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0) scale(1); /* Posição final da animação */
+        }
+
+        .modal-close-btn {
+            color: var(--aa-light-gray);
+            position: absolute;
+            top: 1.2rem;
+            right: 1.8rem;
+            font-size: 2.2rem; /* Botão de fechar maior */
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .modal-close-btn:hover,
+        .modal-close-btn:focus {
+            color: var(--arremaq-orange);
+            text-decoration: none;
+            cursor: pointer;
+            transform: rotate(90deg); /* Animação de rotação */
+        }
+        html[data-theme='dark'] .modal-close-btn:hover,
+        html[data-theme='dark'] .modal-close-btn:focus {
+            color: var(--arremaq-orange-text-dark-theme);
+        }
+
+        .modal-title {
+            font-family: var(--font-headings-portal);
+            font-size: 2rem; /* Título maior */
+            font-weight: 800;
+            color: var(--text-headings-light-portal);
+            margin-bottom: 2rem; /* Espaçamento maior */
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        html[data-theme='dark'] .modal-title {
+            color: var(--text-headings-dark-portal);
+        }
+
+        .modal-form label {
+            display: block;
+            margin-bottom: 0.6rem; /* Espaçamento maior */
+            font-weight: 600;
+            color: var(--text-body-light-portal);
+            font-size: 0.95rem;
+        }
+        html[data-theme='dark'] .modal-form label {
+            color: var(--text-body-dark-portal);
+        }
+
+        .modal-form input[type="text"],
+        .modal-form input[type="tel"],
+        .modal-form input[type="email"],
+        .modal-form input[type="date"] {
+            width: 100%;
+            padding: 1rem; /* Padding aumentado */
+            margin-bottom: 1.5rem; /* Espaçamento maior */
+            border: 1px solid var(--border-color-light-portal);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background-color: var(--bg-cards-section-light);
+            color: var(--text-body-light-portal);
+            transition: all 0.3s ease-in-out;
+            box-shadow: var(--shadow-sm); /* Sombra sutil */
+        }
+        html[data-theme='dark'] .modal-form input {
+            background-color: var(--bg-cards-section-dark);
+            border-color: var(--border-color-dark-portal);
+            color: var(--text-body-dark-portal);
+        }
+        .modal-form input:focus {
+            outline: none;
+            border-color: var(--aa-green);
+            box-shadow: 0 0 0 4px rgba(22, 176, 151, 0.3), var(--shadow-md); /* Foco mais visível */
+        }
+        html[data-theme='dark'] .modal-form input:focus {
+            border-color: var(--aa-green-lighter);
+            box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.4), var(--shadow-md);
+        }
+
+        .modal-form button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 1.2rem; /* Padding aumentado */
+            /* Gradiente verde e laranja */
+            background-image: linear-gradient(to right, var(--aa-green-darker) 0%, var(--aa-green) 49%, var(--arremaq-orange) 51%, var(--arremaq-orange-darker) 100%);
+            background-size: 200% auto; /* Para o hover deslizar o gradiente */
+            color: var(--aa-white);
+            border: none;
+            border-radius: var(--radius-button-portal);
+            font-size: 1.2rem; /* Texto maior */
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s ease-out, background-position 0.6s ease-out; /* Transição mais suave */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra mais pronunciada */
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            position: relative;
+            overflow: hidden;
+            will-change: transform, box-shadow, background-position;
+        }
+        .modal-form button[type="submit"]:hover {
+            background-position: right center; /* Desliza o gradiente para a direita no hover */
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        html[data-theme='dark'] .modal-form button[type="submit"] {
+            background-image: linear-gradient(to right, var(--aa-green) 0%, var(--aa-green-lighter) 49%, var(--arremaq-orange-text-dark-theme) 51%, var(--arremaq-orange) 100%);
+            color: var(--aa-dark-blue); /* Cor do texto no tema escuro */
+        }
+        html[data-theme='dark'] .modal-form button[type="submit"]:hover {
+            box-shadow: 0 0 20px var(--arremaq-orange-lighter), 0 8px 20px rgba(0,0,0,0.5);
+            color: var(--aa-dark-blue);
+        }
+
+        /* Estilos do Modal de Certificado */
+        #certificateModal .modal-content {
+            max-width: 650px;
+            text-align: center;
+            font-family: var(--font-primary-portal);
+            padding: 3.5rem 3rem;
+        }
+        #certificateModal .certificate-header {
+            font-family: var(--font-headings-portal);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            color: var(--aa-green-darker);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        html[data-theme='dark'] #certificateModal .certificate-header {
+            color: var(--aa-green-text-dark-theme);
+        }
+        #certificateModal .certificate-subheader {
+            font-family: var(--font-headings-portal);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 700;
+            color: var(--arremaq-orange-darker);
+            margin-bottom: 2.5rem;
+        }
+        html[data-theme='dark'] #certificateModal .certificate-subheader {
+            color: var(--arremaq-orange-text-dark-theme);
+        }
+        #certificateModal .certificate-body {
+            font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: var(--text-body-light-portal);
+            text-align: left;
+            padding: 0 1rem;
+        }
+        html[data-theme='dark'] #certificateModal .certificate-body {
+            color: var(--text-body-dark-portal);
+        }
+        #certificateModal .certificate-body strong {
+            color: var(--aa-dark-blue);
+            font-weight: 700;
+        }
+        html[data-theme='dark'] #certificateModal .certificate-body strong {
+            color: var(--text-headings-dark-portal);
+        }
+        #certificateModal .certificate-footer {
+            font-size: 0.9rem;
+            color: var(--text-muted-light-portal);
+            margin-top: 2rem;
+        }
+        html[data-theme='dark'] #certificateModal .certificate-footer {
+            color: var(--text-muted-dark-portal);
+        }
+        #certificateModal #copyCertificateBtn {
+            margin-top: 2.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            background-image: linear-gradient(45deg, var(--aa-green-darker), var(--aa-green));
+            background-size: 200% auto;
+            border-radius: var(--radius-button-portal);
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(22, 176, 151, 0.3);
+        }
+        #certificateModal #copyCertificateBtn:hover {
+            background-position: right center;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(22, 176, 151, 0.4);
+        }
+        html[data-theme='dark'] #certificateModal #copyCertificateBtn {
+            background-image: linear-gradient(45deg, var(--aa-green), var(--aa-green-lighter));
+            color: var(--aa-dark-blue);
+        }
+        html[data-theme='dark'] #certificateModal #copyCertificateBtn:hover {
+            box-shadow: 0 0 15px var(--aa-green), 0 6px 15px rgba(22, 176, 151, 0.5);
+        }
+
+        /* * =============================================
+         * Design Responsivo
+         * =============================================
+         */
+        @media (max-width: 1024px) { 
+            .menu-principal-section .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #playbookIndexContainer.grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            html { font-size: 87%; } /* Tamanho de fonte base ajustado */
+            .capa-title { font-size: clamp(1.1rem, 2.5vw, 1.4rem); } 
+            .frase-destaque { font-size: clamp(0.7rem, 1.5vw, 0.9rem); max-width: 98%; padding: 0.4em 0.8em; }
+            .playbook-logo { width: 160px; } 
+            .accessibility-controls { top: 15px; right: 15px; gap: 10px;}
+            .accessibility-btn { width: 44px; height: 44px; font-size: 1.2rem;}
+            .menu-principal-title { font-size: clamp(1.4rem, 3.2vw, 2rem); }
+            .menu-card { padding: 1.8rem 1.2rem; min-height: 260px; }
+            .menu-card-icon { font-size: 2.8rem; }
+            .manual-pitstop-main-title { font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
+            #playbookIndexContainer.grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #playbookIndexContainer .index-item-card { min-height: 200px; padding: 1.5rem; }
+            #playbookIndexContainer .index-item-emoji { font-size: 2.5rem; }
+            .modal-content {
+                padding: 2rem;
+            }
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            .modal-form input, .modal-form button {
+                padding: 0.9rem;
+                font-size: 1.05rem;
+            }
+        }
+        @media (max-width: 640px) { 
+             .menu-principal-section .grid-cols-4, .menu-principal-section .grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+             #playbookIndexContainer.grid-cols-4, #playbookIndexContainer.grid-cols-2, #playbookIndexContainer.grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+             .capa-social-links a { width: 45px; height: 45px; font-size: 1.1rem; }
+        }
+        @media (max-width: 480px) {
+            html { font-size: 80%; } 
+            .playbook-logo { width: 130px; } 
+            .btn-iniciar { font-size: 0.8rem; padding: 0.6em 1.2em; }
+            .capa-title { font-size: clamp(1.0rem, 2.8vw, 1.3rem); line-height: 1.4;} 
+            .frase-destaque { font-size: clamp(0.65rem, 1.4vw, 0.8rem); padding: 0.3em 0.6em; }
+            .menu-principal-title { font-size: clamp(1.2rem, 3.0vw, 1.8rem); }
+            .manual-pitstop-main-title { font-size: clamp(1.3rem, 3.2vw, 1.9rem); }
+            .menu-card { min-height: 220px; padding: 1.2rem; }
+            .menu-card-title { font-size: 0.95rem; }
+            #playbookIndexContainer .index-item-card { min-height: 160px; padding: 1.2rem; }
+            #playbookIndexContainer .index-item-title { font-size: 0.85rem; }
+            .modal-content {
+                padding: 1.5rem;
+            }
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            .modal-form input, .modal-form button {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controles de Acessibilidade -->
+    <div class="accessibility-controls">
+        <button id="increaseFontBtn" class="accessibility-btn" aria-label="Aumentar tamanho da fonte" title="Aumentar Fonte">
+            <i class="fas fa-search-plus"></i>
+        </button>
+        <button id="decreaseFontBtn" class="accessibility-btn" aria-label="Diminuir tamanho da fonte" title="Diminuir Fonte">
+            <i class="fas fa-search-minus"></i>
+        </button>
+        <button id="readPageBtn" class="accessibility-btn" aria-label="Ler página em voz alta" title="Ler Página">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <main id="main-portal-completo">
+        <!-- 
+         * =============================================
+         * Seção 1: Página de Capa
+         * =============================================
+         -->
+        <section id="capa-section" class="capa-section" data-aos="fade-in" data-aos-duration="1200">
+            <div class="logos-container">
+                <img src="https://www.autoarremate.com.br/wp-content/uploads/2022/09/logo-horizontal-padrao.svg" alt="Logotipo da Auto Arremate" class="playbook-logo" data-aos="zoom-in" data-aos-delay="200" onerror="this.onerror=null; this.src='https://placehold.co/192x54/ffffff/16B097?text=Auto+Arremate&font=manrope'; this.alt='Logotipo Auto Arremate Indisponível';">
+                <img src="https://www.arremaq.com.br/wp-content/uploads/2021/01/Logotipo-Arremaqsuperbid.png" alt="Logotipo da Arremaq" class="playbook-logo" data-aos="zoom-in" data-aos-delay="300" onerror="this.onerror=null; this.src='https://placehold.co/192x54/ffffff/FF8C00?text=Arremaq&font=manrope'; this.alt='Logotipo Arremaq Indisponível';">
+            </div>
+            <h1 class="capa-title fun-title-effect" data-aos="fade-up" data-aos-delay="500">
+                <span class="capa-title-line"><span class="emoji-original-color">🏎️</span> TRILHA DE APRENDIZADO <span class="emoji-original-color">💨</span></span>
+                <span class="capa-title-line"><span class="emoji-original-color">⚡</span> SEU GUIA RELÂMPAGO <span class="emoji-original-color">💡</span></span>
+                <span class="capa-title-line"><span class="emoji-original-color">🎯</span> PARA UMA PERFORMANCE CAMPEÃ <span class="emoji-original-color">🏁</span></span>
+                <span class="capa-title-line"><span class="emoji-original-color">🏆</span> NA <span class="text-aa-green-darker">AUTO ARREMATE</span> E <span class="text-arremaq-orange-darker">ARREMAQ</span> <span class="emoji-original-color">🏅</span></span>
+            </h1>
+            <p class="frase-destaque frase-destaque-verde fun-frase-effect" data-aos="fade-up" data-aos-delay="700">
+                <span class="emoji">🚀</span> SÓ OS FORTES ACELERAM, MAS APENAS OS SÁBIOS DOMINAM A ARTE DE FREAR! <span class="emoji">🛑</span>
+            </p>
+            <p class="capa-criado" data-aos="fade-up" data-aos-delay="1000"> <span class="emoji">✨</span> Criado pelo <span class="emoji">👨‍💻</span> Analista de Operações - <strong class="creator-name">Marcelo do Nascimento</strong> <span class="emoji">🚀</span>
+            </p>
+            <button id="btnIniciarCapa" class="btn-iniciar" data-aos="fade-up" data-aos-delay="1100"> EMBARCAR NESSA CORRIDA ÉPICA!
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 1.2em; height: 1.2em;"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </button>
+            <div class="capa-social-links" data-aos="fade-up" data-aos-delay="1200">
+                <a href="https://facebook.com/auto-arremate" target="_blank" aria-label="Facebook Auto Arremate"><i class="fab fa-facebook-f"></i></a> 
+                <a href="https://www.autoarremate.com.br/podcast-dirigindo-vendas/" target="_blank" aria-label="Podcast Dirigindo Vendas" title="Podcast Dirigindo Vendas"><i class="fas fa-podcast"></i></a> 
+                <a href="https://www.instagram.com/autoarremate/" target="_blank" aria-label="Instagram Auto Arremate"><i class="fab fa-instagram"></i></a> 
+                <a href="https://www.linkedin.com/company/autoarremate/" target="_blank" aria-label="LinkedIn Auto Arremate"><i class="fab fa-linkedin-in"></i></a> 
+                <a href="https://wa.me/5511940366065" target="_blank" aria-label="WhatsApp Auto Arremate"><i class="fab fa-whatsapp"></i></a> 
+                <!-- Telefone Auto Arremate removido conforme solicitação -->
+            </div>
+        </section>
+
+        <!-- 
+         * =============================================
+         * Seção 2: Menu Principal
+         * Inicialmente oculta.
+         * =============================================
+         -->
+        <section id="menu-principal-section" class="menu-principal-section hidden" data-aos="fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="menu-principal-title" data-aos="fade-down">
+                    <span class="emoji-original-color">🚦</span> CENTRAL DE COMANDO <span class="text-aa-green-darker">AUTO ARREMATE</span> & <span class="text-arremaq-orange-darker">ARREMAQ</span> <span class="emoji-original-color">🛠️</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10 mt-12 md:mt-16">
+                    <!-- Card para abrir o Índice da Trilha -->
+                    <div id="openManualPitStopBtn" class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="menu-card-icon"><i class="fas fa-flag-checkered text-gray-600 dark:text-gray-400"></i></span>
+                        <h3 class="menu-card-title">
+                            <span class="emoji-original-color">🏁</span> ROTA DOS CAMPEÕES <span class="emoji-original-color">🏆</span>
+                        </h3>
+                    </div>
+                    <!-- Card removido "BOX DA IDENTIDADE AUTO ARREMATE" pois agora está dentro da ROTA DOS CAMPEÕES -->
+                    <div class="menu-card" data-aos="fade-up" data-aos-delay="400">
+                        <span class="menu-card-icon"><i class="fas fa-graduation-cap text-red-500 dark:text-red-400"></i></span>
+                        <h3 class="menu-card-title">
+                           <span class="emoji-original-color">⛽</span> ACADEMIA DE REPASSADORES 3.0
+                        </h3>
+                    </div>
+                    <!-- Card "GERAR CERTIFICADO" - Adicionado ID e classe para controle -->
+                    <div id="generateCertificateCard" class="menu-card disabled certificate-card" data-aos="fade-up" data-aos-delay="500">
+                        <span class="menu-card-icon"><i class="fas fa-certificate text-yellow-500 dark:text-yellow-400"></i></span>
+                        <h3 class="menu-card-title">
+                           <span class="emoji-original-color">🏅</span> GERAR CERTIFICADO
+                        </h3>
+                        <p id="certificateProgress" class="text-sm text-gray-500 mt-4 dark:text-gray-400">
+                            Complete todos os módulos da trilha para gerar seu certificado.
+                        </p>
+                    </div>
+                </div>
+                <!-- Botão para voltar à capa -->
+                <button id="backToCoverBtnMenu" class="btn-voltar-secao mt-16 mx-auto">
+                    <i class="fas fa-arrow-left"></i> VOLTAR À CAPA
+                </button>
+            </div>
+        </section>
+
+        <!-- 
+         * =============================================
+         * Seção 3: Índice da Trilha
+         * Inicialmente oculta.
+         * =============================================
+         -->
+        <section id="manual-pitstop-detalhes-section" class="manual-pitstop-detalhes-section hidden" data-aos="fade-in">
+            <div class="container mx-auto">
+                    <!-- Botão para voltar ao menu principal -->
+                <button class="btn-voltar-secao backToMenuPrincipalBtn mb-10 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> VOLTAR AO MENU PRINCIPAL
+                </button>
+                <h2 class="manual-pitstop-main-title">
+                    <span class="emoji-original-color">🛠️</span> ROTA DOS CAMPEÕES: SEUS MÓDULOS DE ALTA PERFORMANCE <span class="emoji-original-color">🏆</span>
+                </h2>
+                <!-- Container onde o JS irá renderizar os cards do índice -->
+                <div id="playbookIndexContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 py-8">
+                    <!-- Itens do índice serão gerados por JavaScript aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Placeholder para uma seção de conteúdo que seria exibida ao clicar em um item do índice -->
+        <section id="placeholder-content-section" class="playbook-sub-section hidden">
+             <div class="container mx-auto">
+                <button class="btn-voltar-secao backToManualPitStopDetalhesBtn mb-10 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> VOLTAR AOS MÓDULOS
+                </button>
+                <h2 id="content-title-placeholder" class="text-2xl font-bold text-center my-8"></h2>
+                <p id="content-paragraph-placeholder" class="text-lg text-center"></p>
+             </div>
+        </section>
+
+    </main>
+
+    <!-- Modal de Informações do Usuário -->
+    <div id="userInfoModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-btn" role="button" aria-label="Fechar Modal">&times;</span>
+            <h2 class="modal-title">✨ Preencha Seus Dados para Iniciar sua jornada de aprendizado ✨</h2>
+            <form id="userInfoForm" class="modal-form">
+                <label for="fullName">Nome Completo:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Seu nome completo" required aria-required="true">
+
+                <!-- Campo de Telefone removido conforme solicitado -->
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="seu.email@example.com" required aria-required="true">
+                <p class="text-sm text-red-500 hidden" id="emailError">Por favor, insira um email válido.</p>
+
+                <label for="entryDate">Data de Entrada:</label>
+                <input type="date" id="entryDate" name="entryDate" required aria-required="true">
+                <p class="text-sm text-red-500 hidden" id="dateError">Por favor, insira uma data válida.</p>
+
+                <label for="position">Cargo:</label>
+                <input type="text" id="position" name="position" placeholder="Seu cargo na empresa" required aria-required="true">
+
+                <button type="submit" aria-label="Iniciar Trilha de Aprendizado">INICIAR TRILHA</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Novo Modal para Exibir o Certificado -->
+    <div id="certificateModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-btn" role="button" aria-label="Fechar Certificado">&times;</span>
+            <h2 class="certificate-header">PARABÉNS, CAMPEÃO(Ã)!</h2>
+            <p class="certificate-subheader">VOCÊ CONCLUIU A TRILHA DE APRENDIZADO!</p>
+            <div class="certificate-body">
+                <p>Certificamos que <strong><span id="certFullName"></span></strong>, em reconhecimento à sua dedicação e conclusão bem-sucedida de todos os módulos da "Trilha de Aprendizado: Seu Guia Relâmpago para uma Performance Campeã", demonstrando profundo conhecimento e preparo em seu cargo de <strong><span id="certPosition"></span></strong>.</p>
+                <p class="mt-4">Este certificado é um testemunho do seu compromisso com a excelência e o aprimoramento contínuo em suas atividades na Auto Arremate e Arremaq.</p>
+            </div>
+            <p class="certificate-footer">Emitido em <span id="certIssueDate"></span>.</p>
+            <button id="copyCertificateBtn" class="btn">COPIAR CERTIFICADO</button>
+        </div>
+    </div>
+
+    <!-- Botão de Alternar Tema -->
+    <button id="themeToggleBtn" class="theme-toggle-button" aria-label="Alternar tema" title="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicializa a biblioteca Animate on Scroll
+            AOS.init({ 
+                duration: 900, // Duração da animação mais longa
+                once: true,   // Anima apenas uma vez ao rolar
+                offset: 80,   // Começa a animação mais cedo
+                easing: 'ease-in-out' // Curva de animação mais suave
+            });
+
+            // --- Configuração e Inicialização do Tone.js para efeitos sonoros ---
+            const synth = new Tone.Synth().toDestination(); // Cria um sintetizador simples
+
+            // Flag para garantir que o contexto de áudio seja iniciado apenas uma vez após interação do usuário
+            let audioContextStarted = false;
+
+            /**
+             * Reproduz um som de clique. O contexto de áudio é iniciado na primeira chamada.
+             */
+            async function playClickSound() {
+                if (!audioContextStarted) {
+                    await Tone.start(); // Inicia o contexto de áudio somente após a primeira interação do usuário
+                    audioContextStarted = true;
+                    console.log('Contexto de áudio Tone.js iniciado.');
+                }
+                synth.triggerAttackRelease("C5", "32n"); // Toca uma nota C5 por uma duração muito curta (som de clique)
+            }
+
+            // --- Seletores de Elementos ---
+            const capaSection = document.getElementById('capa-section');
+            const menuPrincipalSection = document.getElementById('menu-principal-section');
+            const manualPitstopDetalhesSection = document.getElementById('manual-pitstop-detalhes-section');
+            const placeholderContentSection = document.getElementById('placeholder-content-section');
+            
+            const btnIniciarCapa = document.getElementById('btnIniciarCapa');
+            const backToCoverBtnMenu = document.getElementById('backToCoverBtnMenu');
+            const openManualPitStopBtn = document.getElementById('openManualPitStopBtn');
+            const backToMenuPrincipalBtns = document.querySelectorAll('.backToMenuPrincipalBtn');
+            const backToManualPitStopDetalhesBtns = document.querySelectorAll('.backToManualPitStopDetalhesBtn');
+
+            // Elementos do Modal de Informações do Usuário
+            const userInfoModal = document.getElementById('userInfoModal');
+            const modalCloseBtn = userInfoModal.querySelector('.modal-close-btn'); // Específico para este modal
+            const userInfoForm = document.getElementById('userInfoForm');
+            const emailInput = document.getElementById('email');
+            const entryDateInput = document.getElementById('entryDate');
+            const emailError = document.getElementById('emailError');
+            const dateError = document.getElementById('dateError');
+
+            // Elementos do Modal de Certificado
+            const certificateModal = document.getElementById('certificateModal');
+            const certificateModalCloseBtn = certificateModal.querySelector('.modal-close-btn'); // Específico para este modal
+            const certFullNameSpan = document.getElementById('certFullName');
+            const certPositionSpan = document.getElementById('certPosition');
+            const certIssueDateSpan = document.getElementById('certIssueDate');
+            const copyCertificateBtn = document.getElementById('copyCertificateBtn');
+
+            // Elementos do Card de Certificado no menu principal
+            const generateCertificateCard = document.getElementById('generateCertificateCard');
+            const certificateProgressText = document.getElementById('certificateProgress');
+
+            // Seletores de botões de acessibilidade e tema
+            const increaseFontBtn = document.getElementById('increaseFontBtn');
+            const decreaseFontBtn = document.getElementById('decreaseFontBtn');
+            const readPageBtn = document.getElementById('readPageBtn');
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const htmlEl = document.documentElement; 
+            const moonIcon = '<i class="fas fa-moon"></i>'; 
+            const sunIcon = '<i class="fas fa-sun"></i>'; 
+
+
+            // Variável para controlar se o modal de informações do usuário já foi exibido e os dados preenchidos
+            let userDataSubmitted = false;
+
+            // --- Dados do Índice da Trilha (Atualizados) ---
+            const indexDataPlaybook = [
+                { id: "mod1", emoji: "📜", title: "<strong>MÓD1: NOSSA PISTA DE DECOLAGEM</strong>: HISTÓRIA, VALORES E A FORÇA DA EQUIPE AUTO ARREMATE & ARREMAQ!", sub: "Conheça o motor que impulsiona a Auto Arremate & Arremaq: nossa cultura, missão e o time de campeões.", sentenceEmoji: "📜" },
+                { id: "mod2", emoji: "<span class='emoji-autoarremate-color'>🎨</span>", title: "<strong>MÓD2: BOX DA IDENTIDADE AUTO ARREMATE</strong>: CONSTRUINDO SUA MARCA!", sub: "Entenda os pilares da identidade visual e comunicação para fortalecer sua presença e impacto.", sentenceEmoji: "🎨" },
+                { id: "mod3", emoji: "<span class='emoji-autoarremate-color'>🚗</span>", title: "<strong>MÓD3: AUTO ARREMATE NA POLE POSITION</strong>: DOMINANDO O UNIVERSO DOS VEÍCULOS LEVES!", sub: "Descubra como nossa plataforma acelera a gestão e venda de veículos leves, da captação à comercialização.", sentenceEmoji: "🏆" },
+                { id: "mod4", emoji: "<span class='emoji-arremaq-color'>🚜</span>", title: "<strong>MÓD4: ARREMAQ</strong>: A FORÇA BRUTA DOS GIGANTES DO AGRO E CONSTRUÇÃO!", sub: "Soluções de peso e estratégias robustas para o repasse eficiente de máquinas agrícolas e de construção.", sentenceEmoji: "⚙️" },
+                { id: "mod5", emoji: "🎯", title: "<strong>MÓD5: MAPEANDO OS CAMPEÕES</strong>: NOSSOS CLIENTES IDEAIS AUTO ARREMATE & ARREMAQ (ICPS & PERSONAS)!", sub: "Identifique os perfis de clientes com maior potencial e as personas chave para uma abordagem estratégica.", sentenceEmoji: "🌟" },
+                { id: "mod6", emoji: "📊", title: "<strong>MÓD6: A JORNADA DO CLIENTE VENCEDOR AUTO ARREMATE & ARREMAQ</strong>: DA PROSPECÇÃO À BANDEIRADA FINAL (ANIMAÇÃO)!", sub: "Visualize a transformação do cliente, da necessidade à solução, através de nossa animação dinâmica.", sentenceEmoji: "🎬" },
+                { id: "mod7", emoji: "🚀", title: "<strong>MÓD7: ACELERAÇÃO TÁTICA TOTAL</strong>", sub: "Seu centro de comando para conectar, qualificar e converter. ✨ Todas as estratégias, para todas as personas, em um só lugar.", sentenceEmoji: "✨" },
+                { id: "mod8", emoji: "✍️", title: "<strong>MÓD8: A ARTE DA COMUNICAÇÃO ESTRATÉGICA AUTO ARREMATE & ARREMAQ</strong>: MODELOS QUE CONVERTEM!", sub: "Termos de impacto, orientações e exemplos práticos para uma comunicação persuasiva e eficaz.", sentenceEmoji: "🗣️" },
+                { id: "mod9", emoji: "📖", title: "<strong>MÓD9: DICIONÁRIO DOS MESTRES</strong>: GLOSSÁRIO AUTO ARREMATE & ARREMAQ!", sub: "Decifre os termos técnicos e jargões do mercado automotivo e de máquinas para dominar a linguagem do setor.", sentenceEmoji: "📚" },
+                { id: "mod10", emoji: "📈", title: "<strong>MÓD10: EVOLUÇÃO CONTÍNUA</strong>: NOSSA TRILHA DE APRENDIZADO AUTO ARREMATE & ARREMAQ EM CONSTANTE APERFEIÇOAMENTO!", sub: "Os próximos passos para o desenvolvimento do playbook e o crescimento contínuo da nossa equipe.", sentenceEmoji: "🌌" },
+                { id: "mod11", emoji: "📞", title: "<strong>MÓD11: CENTRAL DE COMANDO AUTO ARREMATE & ARREMAQ</strong>: CANAIS DE CONTATO E SUPORTE ÁGIL!", sub: "Acesse nossos canais de suporte dedicados e encontre ajuda rápida para suas dúvidas e desafios.", sentenceEmoji: "🛠️" },
+                { id: "mod12", emoji: "🏆", title: "<strong>MÓD12: DESAFIO DOS CAMPEÕES AUTO ARREMATE</strong>: TESTE SEU CONHECIMENTO ESTRATÉGICO!", sub: "Teste sua sabedoria e astúcia em nosso quiz gamificado sobre o playbook e o universo do repasse!", sentenceEmoji: "🏅" },
+                { id: "mod13", emoji: "🏎️💨", title: "<strong>MÓD13: GRANDE PRÊMIO AUTO ARREMATE</strong>: ACELERE NO JOGO DO REPASSE!", sub: "Desafie seus limites e rivais em nosso jogo 2D de alta octanagem e torne-se uma lenda da pista digital!", sentenceEmoji: "🏁" }
+            ];
+
+            const playbookIndexContainer = document.getElementById('playbookIndexContainer');
+
+            // Objeto para armazenar o progresso dos módulos
+            let trilhaProgress = {};
+
+            /**
+             * Oculta todas as seções principais e exibe a seção especificada.
+             * Aplica a classe 'hidden' para ocultar e remove-a para exibir.
+             * @param {HTMLElement} sectionToShow A seção a ser tornada visível.
+             */
+            function showSection(sectionToShow) {
+                // Adiciona 'hidden' a todas as seções
+                [capaSection, menuPrincipalSection, manualPitstopDetalhesSection, placeholderContentSection].forEach(s => {
+                    if (s) s.classList.add('hidden');
+                });
+                
+                if (sectionToShow) {
+                    sectionToShow.classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Rolagem suave para o topo
+                    AOS.refreshHard(); // Re-inicializa AOS para novos elementos visíveis
+                }
+            }
+            
+            // --- Funções de Lógica do Certificado e Progresso da Trilha ---
+
+            /**
+             * Carrega o progresso da trilha do localStorage ou inicializa se não existir.
+             */
+            function loadTrilhaProgress() {
+                try {
+                    const storedProgress = localStorage.getItem('trilhaProgress');
+                    if (storedProgress) {
+                        trilhaProgress = JSON.parse(storedProgress);
+                    } else {
+                        // Inicializa todos os módulos como não completados
+                        indexDataPlaybook.forEach(module => {
+                            trilhaProgress[module.id] = false;
+                        });
+                        saveTrilhaProgress(); // Salva o estado inicial
+                    }
+                } catch (error) {
+                    console.warn("LocalStorage não disponível ou dados de progresso corrompidos. Re-inicializando o progresso.", error);
+                    indexDataPlaybook.forEach(module => {
+                        trilhaProgress[module.id] = false;
+                    });
+                    saveTrilhaProgress();
+                }
+            }
+
+            /**
+             * Salva o progresso atual da trilha no localStorage.
+             */
+            function saveTrilhaProgress() {
+                try {
+                    localStorage.setItem('trilhaProgress', JSON.stringify(trilhaProgress));
+                } catch (error) {
+                    console.error("Erro ao salvar progresso no localStorage:", error);
+                }
+            }
+
+            /**
+             * Marca um módulo específico como completo e atualiza o localStorage.
+             * @param {string} moduleId O ID do módulo a ser marcado como completo.
+             */
+            function markModuleAsComplete(moduleId) {
+                if (trilhaProgress.hasOwnProperty(moduleId) && !trilhaProgress[moduleId]) {
+                    trilhaProgress[moduleId] = true;
+                    saveTrilhaProgress();
+                    console.log(`Módulo ${moduleId} marcado como completo.`);
+                    checkCertificateEligibility(); // Verifica a elegibilidade do certificado após cada conclusão
+                }
+            }
+
+            /**
+             * Verifica se todos os módulos foram completados e atualiza o estado do card de certificado.
+             */
+            function checkCertificateEligibility() {
+                const totalModules = indexDataPlaybook.length;
+                const completedModules = Object.values(trilhaProgress).filter(status => status).length;
+                const allModulesCompleted = completedModules === totalModules;
+
+                if (generateCertificateCard) {
+                    if (allModulesCompleted) {
+                        generateCertificateCard.classList.remove('disabled');
+                        generateCertificateCard.removeAttribute('aria-disabled');
+                        generateCertificateCard.style.cursor = 'pointer'; // Garante que o cursor seja de ponteiro
+                        certificateProgressText.textContent = 'Parabéns! Sua trilha está completa. Clique para gerar seu certificado!';
+                    } else {
+                        generateCertificateCard.classList.add('disabled');
+                        generateCertificateCard.setAttribute('aria-disabled', 'true');
+                        generateCertificateCard.style.cursor = 'not-allowed'; // Garante que o cursor seja de "não permitido"
+                        certificateProgressText.textContent = `Complete ${totalModules - completedModules} módulos restantes para gerar seu certificado.`;
+                    }
+                }
+                renderPlaybookIndex(); // Re-renderiza o índice para atualizar o visual dos módulos completos
+            }
+
+            /**
+             * Gera o conteúdo do certificado e o exibe no modal.
+             */
+            function showCertificate() {
+                const userData = JSON.parse(localStorage.getItem('trilhaUserData'));
+                if (!userData) {
+                    // Deveria ser impossível chegar aqui se a lógica estiver correta, mas para segurança
+                    console.error("Dados do usuário não encontrados para gerar o certificado.");
+                    // Melhor mostrar um modal de erro ou voltar para o formulário
+                    userInfoModal.classList.add('show');
+                    return;
+                }
+
+                certFullNameSpan.textContent = userData.fullName || 'Nome do Usuário';
+                certPositionSpan.textContent = userData.position || 'Cargo não especificado';
+                
+                const today = new Date();
+                const options = { day: '2-digit', month: 'long', year: 'numeric' };
+                certIssueDateSpan.textContent = today.toLocaleDateString('pt-BR', options);
+
+                certificateModal.classList.add('show');
+            }
+
+            /**
+             * Copia o texto do certificado para a área de transferência.
+             */
+            function copyCertificateText() {
+                const certificateText = `
+Certificado de Conclusão
+
+PARABÉNS, CAMPEÃO(Ã)!
+VOCÊ CONCLUIU A TRILHA DE APRENDIZADO!
+
+Certificamos que ${certFullNameSpan.textContent}, em reconhecimento à sua dedicação e conclusão bem-sucedida de todos os módulos da "Trilha de Aprendizado: Seu Guia Relâmpago para uma Performance Campeã", demonstrando profundo conhecimento e preparo em seu cargo de ${certPositionSpan.textContent}.
+
+Este certificado é um testemunho do seu compromisso com a excelência e o aprimoramento contínuo em suas atividades na Auto Arremate e Arremaq.
+
+Emitido em ${certIssueDateSpan.textContent}.
+`;
+
+                const textarea = document.createElement('textarea');
+                textarea.value = certificateText.trim(); // Remove espaços extras no início/fim
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    // Melhor usar um feedback visual no lugar de alert()
+                    console.log('Certificado copiado para a área de transferência!');
+                    // Exemplo de feedback visual:
+                    const originalText = copyCertificateBtn.textContent;
+                    copyCertificateBtn.textContent = 'COPIADO!';
+                    setTimeout(() => {
+                        copyCertificateBtn.textContent = originalText;
+                    }, 2000);
+                } catch (err) {
+                    console.error('Falha ao copiar o certificado:', err);
+                    // Feedback para o usuário em caso de falha
+                    const originalText = copyCertificateBtn.textContent;
+                    copyCertificateBtn.textContent = 'ERRO AO COPIAR!';
+                    copyCertificateBtn.style.backgroundColor = 'red';
+                    setTimeout(() => {
+                        copyCertificateBtn.textContent = originalText;
+                        copyCertificateBtn.style.removeProperty('background-color');
+                    }, 2000);
+                }
+                document.body.removeChild(textarea);
+            }
+
+
+            // --- Listeners de Eventos de Navegação e Sons ---
+            if (btnIniciarCapa) {
+                btnIniciarCapa.addEventListener('click', async (e) => { 
+                    e.preventDefault(); 
+                    await playClickSound(); // Toca o som ao clicar
+                    if (!userDataSubmitted) {
+                        userInfoModal.classList.add('show'); // Mostra o modal se os dados não foram preenchidos
+                    } else {
+                        showSection(menuPrincipalSection); // Se já preencheu, vai direto para o menu
+                        checkCertificateEligibility(); // Garante que o estado do certificado seja verificado
+                    }
+                });
+            }
+
+            // Esconde o modal de informações do usuário ao clicar no botão de fechar
+            if (modalCloseBtn) {
+                modalCloseBtn.addEventListener('click', async () => {
+                    await playClickSound(); // Toca o som ao fechar
+                    userInfoModal.classList.remove('show');
+                });
+            }
+
+            // Esconde o modal de certificado ao clicar no botão de fechar
+            if (certificateModalCloseBtn) {
+                certificateModalCloseBtn.addEventListener('click', async () => {
+                    await playClickSound(); // Toca o som ao fechar
+                    certificateModal.classList.remove('show');
+                });
+            }
+
+            // Fecha o modal de informações do usuário ao clicar fora do conteúdo do modal
+            if (userInfoModal) {
+                userInfoModal.addEventListener('click', async (e) => {
+                    if (e.target === userInfoModal) {
+                        await playClickSound(); // Toca o som ao clicar fora
+                        userInfoModal.classList.remove('show');
+                    }
+                });
+            }
+
+            // Fecha o modal de certificado ao clicar fora do conteúdo do modal
+            if (certificateModal) {
+                certificateModal.addEventListener('click', async (e) => {
+                    if (e.target === certificateModal) {
+                        await playClickSound(); // Toca o som ao clicar fora
+                        certificateModal.classList.remove('show');
+                    }
+                });
+            }
+
+            // Listener para copiar o certificado
+            if (copyCertificateBtn) {
+                copyCertificateBtn.addEventListener('click', async () => {
+                    await playClickSound();
+                    copyCertificateText();
+                });
+            }
+
+            // Validação de formato de email (básico)
+            if (emailInput) {
+                emailInput.addEventListener('input', () => {
+                    if (!emailInput.validity.valid && emailInput.value !== '') {
+                        emailError.classList.remove('hidden');
+                    } else {
+                        emailError.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Validação de data (básico) - pode ser mais complexa
+            if (entryDateInput) {
+                entryDateInput.addEventListener('input', () => {
+                    if (!entryDateInput.validity.valid && entryDateInput.value !== '') {
+                        dateError.classList.remove('hidden');
+                    } else {
+                        dateError.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Submissão do formulário do modal de informações do usuário
+            if (userInfoForm) {
+                userInfoForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    await playClickSound(); // Toca o som ao submeter
+
+                    // Validação final antes de salvar
+                    let isValid = true;
+                    if (!emailInput.validity.valid) { emailError.classList.remove('hidden'); isValid = false; } else { emailError.classList.add('hidden'); }
+                    if (!entryDateInput.validity.valid) { dateError.classList.remove('hidden'); isValid = false; } else { dateError.classList.add('hidden'); }
+                    
+                    if (!isValid) {
+                        console.log('Por favor, preencha todos os campos corretamente.');
+                        return; // Impede o envio se a validação falhar
+                    }
+
+                    // Coleta os dados do formulário
+                    const userData = {
+                        fullName: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        entryDate: document.getElementById('entryDate').value,
+                        position: document.getElementById('position').value
+                    };
+                    
+                    // Salva os dados no localStorage
+                    try {
+                        localStorage.setItem('trilhaUserData', JSON.stringify(userData));
+                        userDataSubmitted = true; // Marca que os dados foram submetidos
+                        userInfoModal.classList.remove('show'); // Esconde o modal
+                        showSection(menuPrincipalSection); // Navega para o menu principal
+                        console.log('Dados do usuário salvos:', userData);
+                        checkCertificateEligibility(); // Verifica a elegibilidade do certificado após o login
+                    } catch (error) {
+                        console.error('Erro ao salvar dados do usuário no localStorage:', error);
+                        // Mostrar uma mensagem de erro ao usuário, se necessário
+                    }
+                });
+            }
+
+            // Verifica se os dados já foram preenchidos ao carregar a página
+            try {
+                const storedUserData = localStorage.getItem('trilhaUserData');
+                if (storedUserData) {
+                    userDataSubmitted = true;
+                    // Preenche o formulário com os dados existentes, se desejar
+                    const userData = JSON.parse(storedUserData);
+                    document.getElementById('fullName').value = userData.fullName || '';
+                    document.getElementById('email').value = userData.email || '';
+                    document.getElementById('entryDate').value = userData.entryDate || '';
+                    document.getElementById('position').value = userData.position || '';
+                }
+            } catch (error) {
+                console.warn("LocalStorage não disponível ou dados corrompidos para informações do usuário.");
+            }
+
+            // Listeners de navegação com som
+            if (backToCoverBtnMenu) {
+                backToCoverBtnMenu.addEventListener('click', async (e) => {
+                    e.preventDefault(); 
+                    await playClickSound();
+                    showSection(capaSection);
+                });
+            }
+            if (openManualPitStopBtn) { 
+                openManualPitStopBtn.addEventListener('click', async (e) => {
+                    e.preventDefault(); 
+                    await playClickSound();
+                    showSection(manualPitstopDetalhesSection); 
+                    renderPlaybookIndex(); 
+                });
+            }
+
+            // Listener para o card "GERAR CERTIFICADO"
+            if (generateCertificateCard) {
+                generateCertificateCard.addEventListener('click', async () => {
+                    if (!generateCertificateCard.classList.contains('disabled')) {
+                        await playClickSound();
+                        showCertificate();
+                    } else {
+                        // Opcional: feedback visual para o usuário de que a trilha não está completa
+                        console.log("A trilha não está completa. Certificado não pode ser gerado.");
+                    }
+                });
+            }
+
+
+            backToMenuPrincipalBtns.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    await playClickSound();
+                    showSection(menuPrincipalSection);
+                    checkCertificateEligibility(); // Re-verifica o estado do certificado ao voltar ao menu
+                });
+            });
+            backToManualPitStopDetalhesBtns.forEach(button => {
+                   button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    await playClickSound();
+                    showSection(manualPitstopDetalhesSection);
+                });
+            })
+
+            // Listeners para os botões de acessibilidade
+            const FONT_STEP_PERCENT = 8; 
+            const MIN_HTML_FONT_PERCENT = 65; 
+            const MAX_HTML_FONT_PERCENT = 135; 
+
+            if (increaseFontBtn) {
+                increaseFontBtn.addEventListener('click', async () => {
+                    await playClickSound();
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent + FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.min(newPercent, MAX_HTML_FONT_PERCENT) + '%';
+                });
+            }
+            if (decreaseFontBtn) {
+                decreaseFontBtn.addEventListener('click', async () => {
+                    await playClickSound();
+                    let currentPercent = getCurrentHtmlFontSizePercent();
+                    let newPercent = currentPercent - FONT_STEP_PERCENT;
+                    htmlEl.style.fontSize = Math.max(newPercent, MIN_HTML_FONT_PERCENT) + '%';
+                });
+            }
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', async () => {
+                    await playClickSound();
+                    const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; 
+                    applyTheme(newTheme); 
+                    try { localStorage.setItem('theme', newTheme); } catch (e) { console.warn("LocalStorage não disponível para persistência de tema."); }
+                });
+            }
+            // Não adiciona playClickSound ao readPageBtn pois ele já manipula o áudio
+
+            /**
+             * Obtém o tamanho atual da fonte do elemento HTML raiz em porcentagem.
+             * @returns {number} O tamanho da fonte atual em porcentagem.
+             */
+            function getCurrentHtmlFontSizePercent() {
+                const currentSizePx = parseFloat(window.getComputedStyle(htmlEl).fontSize);
+                const browserBaseSizePx = 16; // Tamanho de fonte padrão do navegador
+                return (currentSizePx / browserBaseSizePx) * 100;
+            }
+
+            /**
+             * Aplica o tema (claro/escuro) ao elemento HTML raiz e atualiza o ícone do botão.
+             * @param {string} theme O tema a ser aplicado ('dark' ou 'light').
+             */
+            function applyTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                if (themeToggleBtn) { 
+                    themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+                }
+            }
+            
+            // Tenta carregar o tema salvo no localStorage, caso contrário, usa a preferência do sistema
+            let storedTheme = null;
+            try { storedTheme = localStorage.getItem('theme'); } catch (e) { console.warn("LocalStorage não disponível para persistência de tema.");}
+            const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            applyTheme(storedTheme || preferredTheme); 
+
+            // --- Acessibilidade: Leitura de Texto (Text-to-Speech) ---
+            const synthSpeech = window.speechSynthesis; // API de Síntese de Fala do navegador
+
+            if (readPageBtn && synthSpeech) {
+                readPageBtn.addEventListener('click', () => {
+                    if (synthSpeech.speaking) {
+                        synthSpeech.cancel(); // Para a leitura se já estiver falando
+                        return;
+                    }
+                    let activeSection = document.querySelector('section:not(.hidden)'); // Encontra a seção visível
+                    if (!activeSection) return;
+
+                    // Coleta o texto de elementos importantes na seção ativa
+                    let textToRead = Array.from(activeSection.querySelectorAll('h1, h2, h3, p, .menu-card-title, .index-item-title, .index-item-sub'))
+                        .map(el => el.textContent.trim()) // Extrai texto e remove espaços extras
+                        .join('. '); // Junta os textos com um ponto final para melhor pausa
+
+                    if (!textToRead) return; // Não faz nada se não houver texto
+
+                    let utterance = new SpeechSynthesisUtterance(textToRead);
+                    utterance.lang = 'pt-BR'; // Define o idioma para Português do Brasil
+
+                    // Atualiza o ícone do botão durante e após a leitura
+                    utterance.onstart = () => { readPageBtn.innerHTML = '<i class="fas fa-stop-circle"></i>'; };
+                    utterance.onend = () => { readPageBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; };
+                    utterance.onerror = () => { readPageBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; }; // Em caso de erro
+                    
+                    synthSpeech.speak(utterance); // Inicia a leitura
+                });
+            } else if (readPageBtn) {
+                readPageBtn.style.display = 'none'; // Oculta o botão se TTS não for suportado
+            }
+
+            // Adiciona listeners para os cards do menu principal para tocar som
+            document.querySelectorAll('.menu-card').forEach(card => {
+                // Remove o listener para o card de certificado para evitar conflito com a lógica de habilitação
+                if (card.id !== 'generateCertificateCard') {
+                    card.addEventListener('click', async () => {
+                        await playClickSound();
+                    });
+                }
+            });
+            
+            /**
+             * Renderiza os cards do índice da trilha no container.
+             * Cada card representa um módulo e possui um listener para exibir seu conteúdo placeholder.
+             */
+            function renderPlaybookIndex() {
+                if (!playbookIndexContainer) return;
+                playbookIndexContainer.innerHTML = ''; // Limpa o conteúdo anterior
+                
+                indexDataPlaybook.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'index-item-card'; 
+                    card.setAttribute('data-aos', 'fade-up');
+                    card.setAttribute('data-aos-delay', (index * 100).toString()); // Atraso na animação para cada card
+                    
+                    let emojiHtml = item.emoji.includes("<span") ? item.emoji : `<span class="emoji-original-color">${item.emoji}</span>`;
+
+                    // Adiciona classe 'completed' se o módulo estiver completo
+                    if (trilhaProgress[item.id]) {
+                        card.classList.add('border-green-500', 'shadow-lg'); // Exemplo de estilo para módulo completo
+                        card.style.borderColor = 'var(--aa-green)'; // Cor da borda para completo
+                        card.innerHTML = `
+                            <span class="index-item-emoji">${emojiHtml}</span>
+                            <h3 class="index-item-title">${item.title}</h3>
+                            <p class="index-item-sub">
+                                ${item.sentenceEmoji ? `<span class="sentence-emoji emoji-original-color">${item.sentenceEmoji}</span>` : ''}
+                                ${item.sub}
+                            </p>
+                            <span class="absolute top-4 right-4 text-green-500 text-2xl"><i class="fas fa-check-circle"></i></span>
+                        `;
+                    } else {
+                        card.innerHTML = `
+                            <span class="index-item-emoji">${emojiHtml}</span>
+                            <h3 class="index-item-title">${item.title}</h3>
+                            <p class="index-item-sub">
+                                ${item.sentenceEmoji ? `<span class="sentence-emoji emoji-original-color">${item.sentenceEmoji}</span>` : ''}
+                                ${item.sub}
+                            </p>`;
+                    }
+                    
+                    // Adiciona listener de clique para exibir uma seção de conteúdo placeholder, marcar como completo e tocar som
+                    card.addEventListener('click', async () => {
+                        await playClickSound();
+                        markModuleAsComplete(item.id); // Marca o módulo como completo
+                        document.getElementById('content-title-placeholder').innerHTML = item.title;
+                        document.getElementById('content-paragraph-placeholder').innerText = "Conteúdo para esta seção está em desenvolvimento.";
+                        showSection(placeholderContentSection);
+                    });
+                    
+                    playbookIndexContainer.appendChild(card);
+                });
+            }
+
+            // --- Inicialização ---
+            loadTrilhaProgress(); // Carrega o progresso ao iniciar
+            checkCertificateEligibility(); // Verifica o estado do certificado ao iniciar
+        });
+    </script>
+</body>
+</html>

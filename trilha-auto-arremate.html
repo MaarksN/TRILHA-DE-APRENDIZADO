@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilha de Aprendizado Auto Arremate & Arremaq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --aa-green: #16B097;
+            --arremaq-orange: #FF8C00;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .hidden { display: none !important; }
+        .btn { 
+            background: var(--aa-green); 
+            color: white; 
+            padding: 0.75rem 2rem; 
+            border-radius: 0.5rem; 
+            border: none; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .quiz-option { 
+            border: 2px solid #e5e7eb; 
+            padding: 1rem; 
+            margin: 0.5rem 0; 
+            border-radius: 0.5rem; 
+            cursor: pointer; 
+        }
+        .quiz-option:hover { border-color: var(--aa-green); }
+        .quiz-option.selected { border-color: var(--aa-green); background: #f0fdfa; }
+        .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .quiz-option.incorrect { border-color: #ef4444; background: #fee2e2; }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.7); 
+            z-index: 1000; 
+        }
+        .modal.show { display: flex; align-items: center; justify-content: center; }
+        .modal-content { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 1rem; 
+            width: 90%; 
+            max-width: 500px; 
+            position: relative; 
+        }
+        .close-btn { 
+            position: absolute; 
+            top: 1rem; 
+            right: 1rem; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-orange-50 min-h-screen">
+    <!-- Barra de Progresso -->
+    <div class="fixed top-0 left-0 right-0 h-2 bg-gray-200 z-50">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-green-500 to-orange-500 transition-all duration-500" style="width: 0%"></div>
+    </div>
+
+    <!-- Seção de Capa -->
+    <section id="capa" class="min-h-screen flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 text-gray-800">
+                🏁 Trilha de Aprendizado
+            </h1>
+            <p class="text-xl mb-8 text-gray-600">
+                Seu Guia Relâmpago para uma Performance Campeã
+            </p>
+            <button id="btnIniciar" class="btn text-lg px-8 py-4">
+                <i class="fas fa-rocket"></i> Iniciar Jornada
+            </button>
+        </div>
+    </section>
+
+    <!-- Módulo 1 -->
+    <section id="modulo1" class="hidden min-h-screen p-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+            <h1 class="text-4xl font-bold mb-8 text-center">
+                🚀 Módulo 1: Nossa Pista de Decolagem
+            </h1>
+            
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">🧭 A Nascente da Nossa Jornada</h2>
+                    <p class="text-lg leading-relaxed">
+                        Aqui, cada linha de código e cada estratégia são impulsionadas por um propósito maior: revolucionar a forma como o mercado acelera seus negócios. Somos mais que uma plataforma; somos o seu copiloto na jornada rumo à máxima performance.
+                    </p>
+                </div>
+                
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">🏆 Nossos Mentores Lendários</h2>
+                    <p class="text-lg leading-relaxed">
+                        Nascemos com pedigree de campeão! Fazemos parte do <strong>Grupo Superbid</strong>, o "Rei da Pista" dos repasses online na América Latina desde 1999.
+                    </p>
+                </div>
+                
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">💖 O Combustível da Nossa Alma</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">🎯</div>
+                            <h3 class="font-semibold mb-2">CLIENTE NO PÓDIO</h3>
+                            <p class="text-sm">Entregamos um carro que supera todas as expectativas na pista!</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">🤝</div>
+                            <h3 class="font-semibold mb-2">JOGO LIMPO</h3>
+                            <p class="text-sm">Negócios e amizades na base da confiança e clareza total.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">🚀</div>
+                            <h3 class="font-semibold mb-2">CORAGEM PARA ACELERAR</h3>
+                            <p class="text-sm">Bravura para desbravar novas rotas e buscar o crescimento turbo!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Módulo 1 -->
+            <div class="bg-green-50 border-2 border-green-500 rounded-xl p-6 mt-8">
+                <h3 class="text-xl font-semibold mb-4">🧠 Quiz: Teste seus conhecimentos!</h3>
+                <div id="quiz1">
+                    <div class="quiz-option" data-answer="correct">
+                        <i class="fas fa-circle mr-2"></i>
+                        O Auto Arremate e Arremaq fazem parte do Grupo Superbid, líder em repasses online na América Latina desde 1999
+                    </div>
+                    <div class="quiz-option" data-answer="incorrect">
+                        <i class="fas fa-circle mr-2"></i>
+                        Somos uma empresa independente sem ligação com outros grupos
+                    </div>
+                    <div class="quiz-option" data-answer="incorrect">
+                        <i class="fas fa-circle mr-2"></i>
+                        Focamos apenas no mercado nacional brasileiro
+                    </div>
+                </div>
+                <button class="btn mt-4" onclick="checkQuiz(1)">Verificar Resposta</button>
+                <div id="feedback1" class="hidden mt-4 p-4 rounded-lg"></div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button class="btn" onclick="nextModule(2)">
+                    <i class="fas fa-arrow-right"></i> Próximo Módulo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulo 2 -->
+    <section id="modulo2" class="hidden min-h-screen p-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+            <h1 class="text-4xl font-bold mb-8 text-center">
+                🚗 Módulo 2: Auto Arremate na Pole Position
+            </h1>
+            
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">🏎️ Bem-vindo à Pista dos Campeões</h2>
+                    <p class="text-lg leading-relaxed">
+                        Acelere seus motores e prepare-se para conhecer o <strong>Auto Arremate</strong>, a plataforma que está revolucionando o mercado de veículos leves! Aqui, concessionárias, locadoras e revendedores encontram a tecnologia mais avançada para turbinar suas vendas.
+                    </p>
+                </div>
+                
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">🛠️ Nosso Arsenal de Alta Tecnologia</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">🔍</div>
+                            <h3 class="font-semibold mb-2">BUSCA INTELIGENTE</h3>
+                            <p class="text-sm">Sistema avançado de filtros que encontra o veículo perfeito em segundos!</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">📊</div>
+                            <h3 class="font-semibold mb-2">ANALYTICS TURBO</h3>
+                            <p class="text-sm">Relatórios detalhados e insights em tempo real para decisões estratégicas!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Módulo 2 -->
+            <div class="bg-green-50 border-2 border-green-500 rounded-xl p-6 mt-8">
+                <h3 class="text-xl font-semibold mb-4">🚗 Quiz: O que você aprendeu sobre o Auto Arremate?</h3>
+                <div id="quiz2">
+                    <div class="quiz-option" data-answer="correct">
+                        <i class="fas fa-circle mr-2"></i>
+                        O Auto Arremate é uma plataforma para veículos leves com tecnologia avançada e interface intuitiva
+                    </div>
+                    <div class="quiz-option" data-answer="incorrect">
+                        <i class="fas fa-circle mr-2"></i>
+                        É apenas um site de classificados comum
+                    </div>
+                    <div class="quiz-option" data-answer="incorrect">
+                        <i class="fas fa-circle mr-2"></i>
+                        Funciona apenas para carros usados
+                    </div>
+                </div>
+                <button class="btn mt-4" onclick="checkQuiz(2)">Verificar Resposta</button>
+                <div id="feedback2" class="hidden mt-4 p-4 rounded-lg"></div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button class="btn" onclick="previousModule(1)">
+                    <i class="fas fa-arrow-left"></i> Módulo Anterior
+                </button>
+                <button class="btn ml-4" onclick="nextModule(3)">
+                    <i class="fas fa-arrow-right"></i> Próximo Módulo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulo 3 -->
+    <section id="modulo3" class="hidden min-h-screen p-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+            <h1 class="text-4xl font-bold mb-8 text-center">
+                🚜 Módulo 3: Arremaq - A Força Bruta dos Gigantes
+            </h1>
+            
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">🏗️ O Território dos Titãs</h2>
+                    <p class="text-lg leading-relaxed">
+                        Saudações, mestre construtor e gigante do agro! Adentre o universo <strong>Arremaq</strong>, onde a força bruta encontra a inteligência estratégica. Aqui, tratores, colheitadeiras, escavadeiras e todos os titãs de aço que movem o progresso encontram uma plataforma robusta.
+                    </p>
+                </div>
+                
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">🛠️ Nosso Arsenal Pesado</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-orange-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">🔎</div>
+                            <h3 class="font-semibold mb-2">RAIO-X PARA MÁQUINAS</h3>
+                            <p class="text-sm">Análise técnica completa de cada equipamento, desde especificações até histórico!</p>
+                        </div>
+                        <div class="bg-orange-50 p-6 rounded-lg text-center">
+                            <div class="text-4xl mb-4">🏭</div>
+                            <h3 class="font-semibold mb-2">GESTÃO INDUSTRIAL</h3>
+                            <p class="text-sm">Controle total da sua frota com dashboards especializados para o setor pesado!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Módulo 3 -->
+            <div class="bg-green-50 border-2 border-green-500 rounded-xl p-6 mt-8">
+                <h3 class="text-xl font-semibold mb-4">🚜 Quiz: Teste seus conhecimentos sobre a Arremaq!</h3>
+                <div id="quiz3">
+                    <div class="quiz-option" data-answer="correct">
+                        <i class="fas fa-circle mr-2"></i>
+                        A Arremaq é especializada em máquinas pesadas para agronegócio e construção
+                    </div>
+                    <div class="quiz-option" data-answer="incorrect">
+                        <i class="fas fa-circle mr-2"></i>
+                        Trabalha apenas com veículos leves
+                    </div>
+                    <div class="quiz-option" data-answer="incorrect">
+                        <i class="fas fa-circle mr-2"></i>
+                        É focada apenas em equipamentos usados
+                    </div>
+                </div>
+                <button class="btn mt-4" onclick="checkQuiz(3)">Verificar Resposta</button>
+                <div id="feedback3" class="hidden mt-4 p-4 rounded-lg"></div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button class="btn" onclick="previousModule(2)">
+                    <i class="fas fa-arrow-left"></i> Módulo Anterior
+                </button>
+                <button class="btn ml-4 bg-orange-500 hover:bg-orange-600" onclick="showCertificate()">
+                    <i class="fas fa-trophy"></i> Finalizar Trilha
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Informações do Usuário -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 class="text-2xl font-bold mb-6 text-center">✨ Preencha Seus Dados</h2>
+            <form id="userForm" class="space-y-4">
+                <div>
+                    <label class="block font-semibold mb-2">Nome Completo:</label>
+                    <input type="text" id="fullName" class="w-full p-3 border rounded-lg" placeholder="Seu nome completo" required>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-2">Email:</label>
+                    <input type="email" id="email" class="w-full p-3 border rounded-lg" placeholder="seu.email@example.com" required>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-2">Cargo:</label>
+                    <input type="text" id="position" class="w-full p-3 border rounded-lg" placeholder="Seu cargo na empresa" required>
+                </div>
+                <button type="submit" class="btn w-full">INICIAR TRILHA</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal do Certificado -->
+    <div id="certificateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="bg-gradient-to-br from-green-50 to-orange-50 border-4 border-green-500 rounded-2xl p-8 text-center">
+                <h2 class="text-3xl font-bold mb-4">🏆 PARABÉNS, CAMPEÃO(Ã)!</h2>
+                <p class="text-xl mb-6">VOCÊ CONCLUIU A TRILHA DE APRENDIZADO!</p>
+                <div class="text-lg space-y-2">
+                    <p>Certificamos que <strong><span id="certName"></span></strong>, em reconhecimento à sua dedicação e conclusão bem-sucedida de todos os módulos da "Trilha de Aprendizado: Seu Guia Relâmpago para uma Performance Campeã".</p>
+                    <p class="mt-4">Cargo: <strong><span id="certPosition"></span></strong></p>
+                    <p class="mt-4">Emitido em: <span id="certDate"></span></p>
+                </div>
+                <button class="btn mt-6" onclick="downloadCertificate()">
+                    <i class="fas fa-download"></i> Baixar Certificado
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentModule = 0;
+        let userInfo = {};
+        let moduleProgress = { 1: false, 2: false, 3: false };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('btnIniciar').addEventListener('click', () => {
+                document.getElementById('userModal').classList.add('show');
+            });
+
+            document.getElementById('userForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleUserSubmit();
+            });
+
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const parent = option.parentElement;
+                    parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+            });
+        }
+
+        function handleUserSubmit() {
+            userInfo = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                position: document.getElementById('position').value
+            };
+            
+            closeModal();
+            startLearningPath();
+        }
+
+        function startLearningPath() {
+            currentModule = 1;
+            showModule(1);
+            updateProgress();
+        }
+
+        function showModule(moduleNumber) {
+            document.querySelectorAll('#capa, #modulo1, #modulo2, #modulo3').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            const targetSection = moduleNumber === 0 ? 
+                document.getElementById('capa') : 
+                document.getElementById(`modulo${moduleNumber}`);
+            
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                currentModule = moduleNumber;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function nextModule(moduleNumber) {
+            if (currentModule > 0) {
+                moduleProgress[currentModule] = true;
+            }
+            showModule(moduleNumber);
+            updateProgress();
+        }
+
+        function previousModule(moduleNumber) {
+            showModule(moduleNumber);
+        }
+
+        function checkQuiz(quizNumber) {
+            const quizContainer = document.getElementById(`quiz${quizNumber}`);
+            const selectedOption = quizContainer.querySelector('.quiz-option.selected');
+            const feedbackDiv = document.getElementById(`feedback${quizNumber}`);
+
+            if (!selectedOption) {
+                alert('Por favor, selecione uma resposta antes de verificar!');
+                return;
+            }
+
+            const isCorrect = selectedOption.getAttribute('data-answer') === 'correct';
+            
+            quizContainer.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'none';
+            });
+
+            if (isCorrect) {
+                selectedOption.classList.add('correct');
+                feedbackDiv.innerHTML = '<div class="text-green-600 font-semibold"><i class="fas fa-check-circle"></i> Parabéns! Resposta correta! 🎉</div>';
+                feedbackDiv.className = 'mt-4 p-4 rounded-lg bg-green-100';
+            } else {
+                selectedOption.classList.add('incorrect');
+                const correctOption = quizContainer.querySelector('[data-answer="correct"]');
+                correctOption.classList.add('correct');
+                feedbackDiv.innerHTML = '<div class="text-red-600 font-semibold"><i class="fas fa-times-circle"></i> Ops! A resposta correta está destacada em verde. 📚</div>';
+                feedbackDiv.className = 'mt-4 p-4 rounded-lg bg-red-100';
+            }
+
+            feedbackDiv.classList.remove('hidden');
+        }
+
+        function updateProgress() {
+            const completedModules = Object.values(moduleProgress).filter(Boolean).length;
+            const progressPercentage = Math.round((completedModules / 3) * 100);
+            document.getElementById('progressBar').style.width = progressPercentage + '%';
+        }
+
+        function showCertificate() {
+            moduleProgress[3] = true;
+            updateProgress();
+
+            document.getElementById('certName').textContent = userInfo.fullName || 'Participante';
+            document.getElementById('certPosition').textContent = userInfo.position || 'Colaborador(a)';
+            document.getElementById('certDate').textContent = new Date().toLocaleDateString('pt-BR');
+
+            document.getElementById('certificateModal').classList.add('show');
+        }
+
+        function downloadCertificate() {
+            const certificateData = {
+                name: userInfo.fullName,
+                position: userInfo.position,
+                completionDate: new Date().toLocaleDateString('pt-BR')
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(certificateData, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", `certificado_${userInfo.fullName?.replace(/\s+/g, '_')}_trilha_aprendizado.json`);
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+
+            alert('🎉 Parabéns! Seu certificado foi baixado com sucesso!');
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.classList.remove('show');
+            });
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

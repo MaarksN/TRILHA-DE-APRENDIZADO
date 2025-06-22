@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de Conclusão - Auto Arremate®</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Variáveis CSS (Paleta de Cores & Fontes) */
+        :root {
+            --aa-green: #16B097;
+            --aa-dark-blue: #1C2E42;
+            --aa-light-gray: #AEB0B2; 
+            --aa-medium-gray: #6c7a89; 
+            --aa-white: #FFFFFF;
+            --aa-black: #000000;
+            --aa-green-darker: #0F8A7E; 
+            --aa-green-text-dark-theme: #2DD4BF; 
+            --aa-green-lighter: #D2F3EC;
+            --aa-green-pastel: #f0fdfa; 
+            --aa-dark-blue-lighter: #2C4A6B;
+            --aa-green-darkest: #17575c; 
+            --aa-shiny-gray-light: #E5E7EB; 
+            --aa-shiny-gray-dark: #374151;  
+
+            --arremaq-orange: #FF8C00;
+            --arremaq-orange-darker: #D97706; 
+            --arremaq-orange-text-dark-theme: #FDBA74; 
+            --arremaq-orange-lighter: #FFD073;
+            --arremaq-orange-pastel: #fffbeb;
+            --arremaq-orange-darkest: #6b3e00; 
+            
+            --font-headings-cover: 'Manrope', sans-serif; 
+            --font-body-cover: 'Manrope', sans-serif;    
+            --font-primary-portal: 'Manrope', sans-serif;
+            --font-headings-portal: 'Sora', sans-serif;
+
+            --bg-main-light: var(--aa-green-pastel); 
+            --bg-main-dark: #0a121c; 
+            --bg-content-light-portal: var(--aa-white);
+            --bg-content-dark-portal: #1e293b; 
+            --bg-cards-section-light: #f0f4f8; 
+            --bg-cards-section-dark: #111827;  
+
+            --text-headings-light-portal: var(--aa-dark-blue);
+            --text-headings-dark-portal: var(--aa-green-lighter);
+            --text-body-light-portal: #334155; 
+            --text-body-dark-portal: #cbd5e1; 
+            --text-muted-light-portal: #616161; 
+            --text-muted-dark-portal: #94a3b8; 
+            
+            --border-color-light-portal: #e2e8f0; 
+            --border-color-dark-portal: #334155; 
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            --radius-card-portal: 1.25rem;
+            --radius-button-portal: 0.75rem;
+            
+            --transition-main: .3s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* Estilos Globais e Tema Escuro */
+        html { 
+            scroll-behavior: smooth; 
+            font-family: var(--font-body-cover); 
+            font-size: 91%;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body-cover); 
+            background-color: var(--bg-main-light);
+            color: var(--text-body-light-portal);
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.7;
+            transition: background-color var(--transition-main), color var(--transition-main);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        html[data-theme='dark'] body {
+            background-color: var(--bg-main-dark);
+            color: var(--text-body-dark-portal);
+        }
+
+        /* Estilos do Certificado */
+        .certificate-container {
+            background-color: var(--bg-content-light-portal);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: 2.5rem;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            border: 2px solid var(--aa-green);
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(135deg, rgba(22,176,151,0.05) 0%, rgba(255,140,0,0.05) 100%);
+        }
+        html[data-theme='dark'] .certificate-container {
+            background-color: var(--bg-content-dark-portal);
+            border-color: var(--aa-green-lighter);
+            background-image: linear-gradient(135deg, rgba(22,176,151,0.1) 0%, rgba(255,140,0,0.1) 100%);
+        }
+
+        .certificate-header {
+            font-family: var(--font-headings-portal);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--aa-dark-blue);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            background: linear-gradient(45deg, var(--aa-green-darker), var(--arremaq-orange-darker));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        html[data-theme='dark'] .certificate-header {
+            background: linear-gradient(45deg, var(--aa-green-lighter), var(--arremaq-orange-lighter));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem; /* Espaçamento entre os logos */
+            margin-bottom: 1.5rem; /* Margem abaixo dos logos */
+        }
+
+        .company-logo {
+            max-width: 150px; /* Tamanho máximo dos logos */
+            height: auto;
+            filter: drop-shadow(0 0.2rem 0.4rem rgba(0,0,0,0.1));
+        }
+        html[data-theme='dark'] .company-logo {
+            filter: drop-shadow(0 0.2rem 0.4rem rgba(0,0,0,0.2));
+        }
+
+        .certificate-body {
+            font-family: var(--font-primary-portal);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-body-light-portal);
+            line-height: 1.8;
+        }
+        html[data-theme='dark'] .certificate-body {
+            color: var(--text-body-dark-portal);
+        }
+
+        .certificate-body p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight-text {
+            font-family: var(--font-headings-portal);
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--aa-green);
+            display: block;
+            margin: 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        html[data-theme='dark'] .highlight-text {
+            color: var(--aa-green-text-dark-theme);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .certificate-info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            color: var(--text-muted-light-portal);
+            margin-top: 0.5rem;
+        }
+        html[data-theme='dark'] .certificate-info-item {
+            color: var(--text-muted-dark-portal);
+        }
+
+        .certificate-footer {
+            margin-top: 2.5rem;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            color: var(--text-body-light-portal);
+        }
+        html[data-theme='dark'] .certificate-footer {
+            color: var(--text-body-dark-portal);
+        }
+
+        .btn-download, .btn-close-certificate {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-headings-cover);
+            font-weight: bold;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-button-portal);
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            box-shadow: var(--shadow-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-download {
+            background-image: linear-gradient(45deg, var(--aa-green-darker) 0%, var(--aa-green) 50%, var(--aa-green-darker) 100%);
+            background-size: 200% auto;
+            color: var(--aa-white);
+            border: none;
+            margin-right: 1rem;
+        }
+        .btn-download:hover {
+            background-position: right center;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        html[data-theme='dark'] .btn-download {
+            background-image: linear-gradient(45deg, var(--aa-green), var(--aa-green-lighter), var(--aa-green));
+            color: var(--aa-dark-blue);
+        }
+        html[data-theme='dark'] .btn-download:hover {
+            box-shadow: 0 0 16px var(--aa-green-lighter);
+            color: var(--aa-dark-blue);
+        }
+
+        .btn-close-certificate {
+            background-color: var(--bg-cards-section-light);
+            color: var(--text-headings-light-portal);
+            border: 2px solid var(--border-color-light-portal);
+        }
+        .btn-close-certificate:hover {
+            background-color: var(--bg-cards-section-light);
+            border-color: var(--aa-medium-gray);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        html[data-theme='dark'] .btn-close-certificate {
+            background-color: var(--bg-cards-section-dark);
+            color: var(--text-headings-dark-portal);
+            border-color: var(--border-color-dark-portal);
+        }
+        html[data-theme='dark'] .btn-close-certificate:hover {
+            border-color: var(--aa-light-gray);
+        }
+
+        @media (max-width: 640px) {
+            .certificate-container {
+                padding: 1.5rem;
+            }
+            .certificate-header {
+                font-size: clamp(1.4rem, 4vw, 2rem);
+            }
+            .logo-container {
+                flex-direction: column; /* Empilha os logos em telas pequenas */
+                gap: 0.8rem;
+                margin-bottom: 1rem;
+            }
+            .company-logo {
+                max-width: 100px; /* Reduz o tamanho do logo em telas pequenas */
+            }
+            .highlight-text {
+                font-size: clamp(1.5rem, 4vw, 2.2rem);
+            }
+            .certificate-body {
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+            }
+            .certificate-info-item {
+                font-size: clamp(0.8rem, 1.8vw, 1rem);
+            }
+            .btn-download, .btn-close-certificate {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+                margin-right: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .btn-actions {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div id="certificateContainer" class="certificate-container">
+        <!-- Contêiner para os logotipos -->
+        <div class="logo-container">
+            <img src="https://www.autoarremate.com.br/wp-content/uploads/2022/09/logo-horizontal-padrao.svg" 
+                 alt="Logotipo Auto Arremate" 
+                 class="company-logo" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/150x40/ffffff/16B097?text=Auto+Arremate&font=manrope'; this.alt='Logotipo Auto Arremate Indisponível';">
+            <img src="https://www.arremaq.com.br/wp-content/uploads/2021/01/Logotipo-Arremaqsuperbid.png" 
+                 alt="Logotipo Arremaq" 
+                 class="company-logo" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/150x40/ffffff/FF8C00?text=Arremaq&font=manrope'; this.alt='Logotipo Arremaq Indisponível';">
+        </div>
+
+        <h1 class="certificate-header">
+            <i class="fas fa-trophy text-yellow-400"></i> Certificado de Conclusão <i class="fas fa-trophy text-yellow-400"></i>
+        </h1>
+
+        <div class="certificate-body">
+            <p><i class="fas fa-scroll text-gray-500 mr-2"></i> Este certificado é concedido a</p>
+            <span id="userName" class="highlight-text">Nome do Participante</span>
+            
+            <div class="certificate-info-item">
+                <i class="fas fa-briefcase text-gray-500"></i> Cargo: <span id="userPosition" class="font-semibold ml-1"></span>
+            </div>
+            <div class="certificate-info-item">
+                <i class="fas fa-calendar-alt text-gray-500"></i> Início na Empresa: <span id="userEntryDate" class="font-semibold ml-1"></span>
+            </div>
+
+            <p class="mt-4"><i class="fas fa-book-open text-gray-500 mr-2"></i> pela conclusão bem-sucedida da Trilha de Aprendizado Auto Arremate® 2025.</p>
+            
+            <div class="certificate-info-item mt-4">
+                <i class="fas fa-calendar-check text-gray-500"></i> Concluído em: <span id="completionDate" class="font-semibold ml-1"></span>
+            </div>
+
+            <p class="certificate-footer mt-6">
+                <i class="fas fa-rocket text-indigo-500 mr-2"></i> Continue a acelerar os seus resultados com o conhecimento adquirido!
+            </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center mt-8 btn-actions">
+            <button id="downloadBtn" class="btn-download">
+                <i class="fas fa-download"></i> Baixar Certificado (PNG)
+            </button>
+            <button id="closeBtn" class="btn-close-certificate">
+                <i class="fas fa-times-circle"></i> Fechar
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userNameEl = document.getElementById('userName');
+            const userPositionEl = document.getElementById('userPosition');
+            const userEntryDateEl = document.getElementById('userEntryDate');
+            const completionDateEl = document.getElementById('completionDate');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const closeBtn = document.getElementById('closeBtn');
+
+            // Função para formatar a data para dd/mm/aaaa
+            function formatDate(dateString) {
+                if (!dateString) return '';
+                const [year, month, day] = dateString.split('-');
+                return `${day}/${month}/${year}`;
+            }
+
+            // Carregar dados do usuário do localStorage
+            const storedUserData = localStorage.getItem('trilhaUserData');
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                userNameEl.textContent = userData.fullName || 'Participante';
+                userPositionEl.textContent = userData.position || 'Não Informado';
+                userEntryDateEl.textContent = formatDate(userData.entryDate) || 'Não Informada';
+            } else {
+                userNameEl.textContent = 'Visitante';
+                userPositionEl.textContent = 'Não Informado';
+                userEntryDateEl.textContent = 'Não Informada';
+                console.warn('Dados do usuário não encontrados no localStorage.');
+            }
+
+            // Definir a data de conclusão como a data atual
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Mês é 0-indexed
+            const year = today.getFullYear();
+            completionDateEl.textContent = `${day}/${month}/${year}`;
+
+            // Funcionalidade de download do certificado
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    const certificateContainer = document.getElementById('certificateContainer');
+                    // Esconde os botões para a captura da imagem
+                    downloadBtn.style.display = 'none';
+                    closeBtn.style.display = 'none';
+
+                    // Seleciona e esconde os logos temporariamente para a captura, se eles estiverem no documento
+                    const logos = document.querySelectorAll('.company-logo');
+                    logos.forEach(logo => logo.style.display = 'none');
+
+
+                    html2canvas(certificateContainer, {
+                        scale: 2, // Aumenta a resolução da imagem capturada
+                        useCORS: true, // Permite carregar imagens de outras origens, se houver
+                        logging: true,
+                        backgroundColor: null // Para capturar o fundo corretamente
+                    }).then(function(canvas) {
+                        // Restaura a visibilidade dos botões e logos após a captura
+                        downloadBtn.style.display = 'inline-flex';
+                        closeBtn.style.display = 'inline-flex';
+                        logos.forEach(logo => logo.style.display = 'block'); // Restaura a visibilidade dos logos
+
+                        const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+                        const link = document.createElement('a');
+                        link.download = 'Certificado_AutoArremate_Conclusao.png';
+                        link.href = image;
+                        link.click();
+                    }).catch(error => {
+                        console.error('Erro ao gerar certificado:', error);
+                        alert('Não foi possível gerar o certificado. Tente novamente.');
+                        // Garante que os botões e logos voltem a aparecer mesmo em caso de erro
+                        downloadBtn.style.display = 'inline-flex';
+                        closeBtn.style.display = 'inline-flex';
+                        logos.forEach(logo => logo.style.display = 'block'); // Restaura a visibilidade dos logos
+                    });
+                });
+            }
+
+            // Funcionalidade do botão Fechar
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    // Aqui você pode decidir o que acontece ao fechar:
+                    // window.history.back(); // Volta para a página anterior
+                    // window.location.href = 'index.html'; // Redireciona para a página principal (ajuste o caminho)
+                    alert('Você clicou em Fechar. Implemente a lógica de redirecionamento aqui.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
